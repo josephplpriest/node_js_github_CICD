@@ -1,5 +1,7 @@
+# The name that github will display for the workflow in the UI
 name: node-CI-CD
 
+# When the workflow will run
 on:
   push:
     branches:
@@ -7,16 +9,25 @@ on:
 
 jobs:
   build:
-  
+
+    # The image/OS for running your tasks
     runs-on: ubuntu-latest
 
+    # tasks/steps that will run sequentially
     steps:
+      
+      # action to checkout a repo/aka download the code into the image 
       - uses: actions/checkout@v4
 
       - name: Setup node
+
+      # install what node needs to run
         uses: actions/setup-node@v4
         with:
+          # which version(s) you want to use/validate against
           node-version: '18.x'
+
+      # run commands (essentially what you'd do locally in CLI/bash)
       - run: npm install
 
       - run: npm ci
